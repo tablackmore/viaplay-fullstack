@@ -8,7 +8,10 @@ module.exports = React.createClass({
     return {playTrailer: false};
   },
 
-  clickPlayTrailer: function(event) {
+  clickPlayTrailer: function(e) {
+    e.stopPropagation();
+    e.nativeEvent.stopImmediatePropagation();
+    e.preventDefault();
     this.setState({playTrailer: true});
   },
 

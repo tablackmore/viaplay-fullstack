@@ -22328,7 +22328,10 @@ module.exports = React.createClass({
     return { playTrailer: false };
   },
 
-  clickPlayTrailer: function clickPlayTrailer(event) {
+  clickPlayTrailer: function clickPlayTrailer(e) {
+    e.stopPropagation();
+    e.nativeEvent.stopImmediatePropagation();
+    e.preventDefault();
     this.setState({ playTrailer: true });
   },
 
