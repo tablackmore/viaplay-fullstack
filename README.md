@@ -1,4 +1,4 @@
-#### a complex express app to demonstrate the usage of react-engine
+#### Viaplay fullstack app using express to demonstrate the usage of react-engine
 
 ##### Uses react views and react-router views
 
@@ -7,5 +7,5 @@
 cd `into_this_dir`
 npm install
 npm start
-open http://localhost:3000
+open http://localhost:8080/web-se/film/tusk-2014
 ```
