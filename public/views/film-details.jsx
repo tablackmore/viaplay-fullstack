@@ -4,6 +4,14 @@ const React = require('react');
 module.exports = React.createClass({
   displayName: 'contents',
 
+  getInitialState: function(){
+    return {playTrailer: false};
+  },
+
+  clickPlayTrailer: function(event) {
+    this.setState({playTrailer: true});
+  },
+
   render: function render() {
     function genreNodes(genres) {
       if (genres) {
@@ -39,9 +47,18 @@ module.exports = React.createClass({
           <section className="block product" itemScope itemType="http://schema.org/Movie">
                 <div className="scaffold">
                   <div className="player-wrapper">
-                    <figure className="mediaplayer">
-                      <iframe width="100%" height="100%" src={'//v.traileraddict.com/' + this.props.film.trailer.trailer_id} allowFullScreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" scrolling="no" frameBorder="0"></iframe>
-                    </figure>
+                    { this.state.playTrailer ?
+                      <figure className="mediaplayer">
+                        <iframe width="100%" height="100%" src={'//v.traileraddict.com/' + this.props.film.trailer.trailer_id} allowFullScreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" scrolling="no" frameBorder="0"></iframe>
+                      </figure> :
+                      <figure className="mediaplayer">
+                      <img className="poster" src={this.props.film.product.content.images.boxart.url} alt={this.props.film.product.content.title} />
+                      <div className="backdrop large">
+                        <div className="box">
+                          <a className="play-link large" onClick={this.clickPlayTrailer} href="#"></a>
+                        </div>
+                      </div>
+                    </figure> }
                   </div>
                   <div className="metadata">
                     <div className="group">

@@ -22324,6 +22324,14 @@ var React = require('react');
 module.exports = React.createClass({
   displayName: 'contents',
 
+  getInitialState: function getInitialState() {
+    return { playTrailer: false };
+  },
+
+  clickPlayTrailer: function clickPlayTrailer(event) {
+    this.setState({ playTrailer: true });
+  },
+
   render: function render() {
     function genreNodes(genres) {
       if (genres) {
@@ -22432,10 +22440,23 @@ module.exports = React.createClass({
             React.createElement(
               'div',
               { className: 'player-wrapper' },
-              React.createElement(
+              this.state.playTrailer ? React.createElement(
                 'figure',
                 { className: 'mediaplayer' },
                 React.createElement('iframe', { width: '100%', height: '100%', src: '//v.traileraddict.com/' + this.props.film.trailer.trailer_id, allowFullScreen: 'true', webkitallowfullscreen: 'true', mozallowfullscreen: 'true', scrolling: 'no', frameBorder: '0' })
+              ) : React.createElement(
+                'figure',
+                { className: 'mediaplayer' },
+                React.createElement('img', { className: 'poster', src: this.props.film.product.content.images.boxart.url, alt: this.props.film.product.content.title }),
+                React.createElement(
+                  'div',
+                  { className: 'backdrop large' },
+                  React.createElement(
+                    'div',
+                    { className: 'box' },
+                    React.createElement('a', { className: 'play-link large', onClick: this.clickPlayTrailer, href: '#' })
+                  )
+                )
               )
             ),
             React.createElement(
